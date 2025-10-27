@@ -1,0 +1,27 @@
+# VCS
+.git
+.gitignore
+
+# IDE/editor
+.idea
+.vscode
+*.iml
+*.ipr
+*.iws
+*.swp
+*~
+.DS_Store
+
+# Maven artifacts
+.mvn/
+target/*
+!target/spring-boot-web.jar
+
+# Tests (not needed in image context)
+src/test/
+
+# Logs and temp files
+logs/
+*.log
+tmp/
+*.tmp

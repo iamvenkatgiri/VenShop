@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link data-th-href="@{/css/main.css?{id}(id=${timestamp})}" rel="stylesheet">
+    <title th:text="${title}">VenShop — Your Friendly Mini Store</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow-sm">
+    <a class="navbar-brand font-weight-bold" href="#">VenShop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+        </ul>
+        <button id="view-cart" class="btn btn-outline-light btn-sm" type="button">Cart (coming soon)</button>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <section class="starter-template">
+        <h1 class="display-5" th:text="${title}">VenShop — Your Friendly Mini Store</h1>
+        <p class="lead mb-0" th:text="${msg}">Browse our curated picks. Cart and checkout coming soon.</p>
+    </section>
+
+    <section id="products" class="product-grid">
+        <!-- Static sample products; replace with dynamic content later -->
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-1/400/300" alt="Product 1">
+            <h3>Wireless Headphones</h3>
+            <p class="price">$59.99</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Wireless Headphones">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-2/400/300" alt="Product 2">
+            <h3>Smart Fitness Band</h3>
+            <p class="price">$39.99</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Smart Fitness Band">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-3/400/300" alt="Product 3">
+            <h3>Ceramic Coffee Mug</h3>
+            <p class="price">$12.50</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Ceramic Coffee Mug">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-4/400/300" alt="Product 4">
+            <h3>Bluetooth Speaker</h3>
+            <p class="price">$29.90</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Bluetooth Speaker">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-5/400/300" alt="Product 5">
+            <h3>Portable Charger 10k</h3>
+            <p class="price">$24.99</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Portable Charger 10k">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-6/400/300" alt="Product 6">
+            <h3>Minimalist Notebook</h3>
+            <p class="price">$9.99</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Minimalist Notebook">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-7/400/300" alt="Product 7">
+            <h3>LED Desk Lamp</h3>
+            <p class="price">$18.75</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="LED Desk Lamp">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-8/400/300" alt="Product 8">
+            <h3>Ergo Mouse</h3>
+            <p class="price">$22.00</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Ergo Mouse">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-9/400/300" alt="Product 9">
+            <h3>USB-C Hub</h3>
+            <p class="price">$34.95</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="USB-C Hub">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://picsum.photos/seed/venshop-10/400/300" alt="Product 10">
+            <h3>Travel Water Bottle</h3>
+            <p class="price">$16.49</p>
+            <button class="btn btn-primary btn-block add-to-cart" data-product="Travel Water Bottle">Add to Cart</button>
+        </div>
+    </section>
+</main>
+
+<footer class="footer text-center">
+    <div class="container">
+        <span>© VenShop • Demo store • Built with Spring Boot + Thymeleaf</span>
+    </div>
+</footer>
+
+<script data-th-src="@{/js/main.js}"></script>
+</body>
+</html>
