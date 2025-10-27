@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'iamvenkatgiri/maven-docker-agent:v1'
+      image 'abhishekf5/maven-abhishek-docker-agent:v1'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/iamvenkatgiri/Jenkins-Zero-To-Hero.git'
+        //git branch: 'main', url: 'https://github.com/iamvenkatgiri/VenShop.git'
       }
     }
     stage('Build and Test') {
@@ -52,13 +52,13 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
+            GIT_REPO_NAME = "VenShop"
             GIT_USER_NAME = "iamvenkatgiri"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "venkatgiri@venshop.io"
+                    git config user.email "venkatagiri.sasanapuri@gmail.com"
                     git config user.name "Venkatgiri Sasanapuri"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
