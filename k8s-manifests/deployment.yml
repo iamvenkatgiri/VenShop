@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-boot-app
+  name: venshop-deployment
   labels:
-    app: spring-boot-app
+    app: venshop-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: spring-boot-app
+      app: venshop-app
   template:
     metadata:
       labels:
-        app: spring-boot-app
+        app: venshop-app
     spec:
       containers:
-      - name: spring-boot-app
-        image: abhishekf5/ultimate-cicd:replaceImageTag
+      - name: venshop-app
+        image: iamvenkatgiri/online-shop:replaceImageTag
         ports:
         - containerPort: 8080
