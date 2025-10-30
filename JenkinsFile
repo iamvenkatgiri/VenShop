@@ -1,20 +1,20 @@
 pipeline {
   agent {
     docker {
-      image 'maven:3.9.6-eclipse-temurin-17'
+      image 'iamvenkatgiri/online-shop:mvn_doc_jen'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
   stages {
-    stage('Setup Docker') {
-      steps {
-        sh '''
-          apt-get update
-          apt-get install -y docker.io
-          docker --version
-        '''
-      }
-    }
+    // stage('Setup Docker') {
+    //   steps {
+    //     sh '''
+    //       apt-get update
+    //       apt-get install -y docker.io
+    //       docker --version
+    //     '''
+    //   }
+    // }
     stage('Checkout') {
       steps {
         sh 'echo passed'
