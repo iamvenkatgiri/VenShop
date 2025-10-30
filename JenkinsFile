@@ -6,7 +6,6 @@ pipeline {
     }
   }
   stages {
-    
     stage('Setup Docker') {
       steps {
         sh '''
@@ -19,7 +18,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/iamvenkatgiri/VenShop.git'
+      //git branch: 'main', url: 'https://github.com/iamvenkatgiri/VenShop.git'
       }
     }
     stage('Build and Test') {
@@ -31,7 +30,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://34.174.142.88:9000"
+        SONAR_URL = 'http://34.174.142.88:9000'
       }
       steps {
         withCredentials([string(credentialsId: 'sonar', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -39,6 +38,14 @@ pipeline {
         }
       }
     }
+    stage('Quality Gate') {
+      steps {
+        timeout(time: 3, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+      }
+    }
+
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "iamvenkatgiri/online-shop:${BUILD_NUMBER}"
@@ -52,8 +59,8 @@ pipeline {
             sh 'docker tag ${DOCKER_IMAGE} iamvenkatgiri/online-shop:latest'
 
             def dockerImage = docker.image("${DOCKER_IMAGE}")
-            def latestImage = docker.image("iamvenkatgiri/online-shop:latest")
-            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+            def latestImage = docker.image('iamvenkatgiri/online-shop:latest')
+            docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
                 dockerImage.push()
                 latestImage.push()
             }
@@ -62,12 +69,12 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "VenShop"
-            GIT_USER_NAME = "iamvenkatgiri"
+            GIT_REPO_NAME = 'VenShop'
+            GIT_USER_NAME = 'iamvenkatgiri'
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh '''
+          sh '''
                     git config user.email "venkatagiri.sasanapuri@gmail.com"
                     git config user.name "Venkatgiri Sasanapuri"
                     BUILD_NUMBER=${BUILD_NUMBER}
