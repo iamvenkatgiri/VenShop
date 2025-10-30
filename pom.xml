@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.venkat</groupId>
-    <artifactId>spring-boot-demo</artifactId>
+    <artifactId>venShop</artifactId>
     <version>1.0</version>
 
-    <name>spring-boot-demo</name>
+    <name>venShop</name>
     <url></url>
 
     <parent>
