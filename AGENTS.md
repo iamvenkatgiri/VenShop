@@ -16,7 +16,7 @@
   - `docker run -d -p 8010:8080 ultimate-cicd-pipeline:v1`
 
 ## Coding Style & Naming Conventions
-- Java 11 (see `pom.xml`). Prefer 4‑space indentation, UTF‑8 encoding.
+- Java 17 (see `pom.xml`). Prefer 4‑space indentation, UTF‑8 encoding.
 - Packages: `com.venkat...`; Classes: PascalCase; methods/fields: camelCase; constants: UPPER_SNAKE_CASE.
 - Keep controllers thin; place view logic in templates; static files under `static/`.
 - Organize by feature when adding modules (controller/service/config under the same package root).

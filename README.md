@@ -2,7 +2,7 @@
 
 VenShop is a simple Spring Boot + Thymeleaf demo storefront. It follows a classic MVC pattern: the controller maps the root path (`/`) and renders the `index` view with a title and message.
 
-Key tech: Java 11, Spring Boot, Thymeleaf, Maven. The packaged JAR is `target/spring-boot-web.jar`.
+Key tech: Java 17, Spring Boot, Thymeleaf, Maven. The packaged JAR is `target/spring-boot-web.jar`.
 
 ## Project Structure
 
@@ -72,7 +72,7 @@ Add tests under `src/test/java/...` matching the main package structure.
 
 ## Notes
 
-- Java version: 11 (configured in `pom.xml`).
+- Java version: 17 (configured in `pom.xml`).
 - JAR name: `spring-boot-web.jar`.
 - This repo includes a `Dockerfile` and a `JenkinsFile` suitable for CI/CD pipelines.
 
