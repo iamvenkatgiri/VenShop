@@ -9,14 +9,11 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        sh 'mvn -v && git --version && docker --version && sed --version'
         // git branch: 'master', url: 'https://github.com/iamvenkatgiri/VenShop.git'
       }
     }
     stage('Build and Test') {
       steps {
-        sh 'ls -ltr'
-        // build the project and create a JAR file
         sh 'mvn clean package'
       }
     }
@@ -66,16 +63,6 @@ pipeline {
             // checkout scm
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
-                    cd ${WORKSPACE}
-                    whoami
-                    ls -ltr
-                    pwd
-                    ls -la
-                    mount | grep workspace || true
-                    ls -lad "${WORKSPACE}" "${WORKSPACE}/." 2>/dev/null || true
-                    [ -d .git ] && echo ".git exists" || echo ".git missing"
-                    git rev-parse --git-dir 2>&1 || echo "not a git repo"
-                    git status 2>&1 || echo "git status failed"
                     git config --global --add safe.directory $(pwd)
                     git config --global user.email "venkatagiri.sasanapuri@gmail.com"
                     git config --global user.name "iamvenkatgiri"
