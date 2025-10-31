@@ -2,14 +2,15 @@ pipeline {
   agent {
     docker {
       image 'iamvenkatgiri/online-shop:mvn_doc_jen'
-      args "--user root -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/jenkins/workspace/venshop-pipeline/.git:/var/lib/jenkins/workspace/venshop-pipeline/.git"
+      args "--user root -v /var/run/docker.sock:/var/run/docker.sock"
     }
   }
   stages {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        git branch: 'master', url: 'https://github.com/iamvenkatgiri/VenShop.git'
+        sh 'mvn -v && git --version && docker --version && sed --version'
+        // git branch: 'master', url: 'https://github.com/iamvenkatgiri/VenShop.git'
       }
     }
     stage('Build and Test') {
@@ -43,7 +44,7 @@ pipeline {
       }
       steps {
         script {
-            sh '/usr/bin/docker build -t ${DOCKER_IMAGE} .'
+            sh 'docker build -t ${DOCKER_IMAGE} .'
             // Tag the image as latest in addition to build number
             sh 'docker tag ${DOCKER_IMAGE} iamvenkatgiri/online-shop:latest'
 
@@ -62,7 +63,7 @@ pipeline {
             GIT_USER_NAME = 'iamvenkatgiri'
         }
         steps {
-            checkout scm
+            // checkout scm
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
           sh '''
                     cd ${WORKSPACE}
