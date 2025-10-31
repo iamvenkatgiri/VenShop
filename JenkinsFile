@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'iamvenkatgiri/online-shop:mvn_doc_jen'
+      image 'iamvenkatgiri/java_cicd_image:slim'
       args "--user root -v /var/run/docker.sock:/var/run/docker.sock"
     }
   }
