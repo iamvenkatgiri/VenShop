@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'iamvenkatgiri/online-shop:mvn_doc_jen'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock -v $WORKSPACE/.git:/var/lib/jenkins/workspace/venshop-pipeline/.git'
     }
   }
   stages {
