@@ -2,19 +2,10 @@ pipeline {
   agent {
     docker {
       image 'iamvenkatgiri/online-shop:mvn_doc_jen'
-      args '--user root -v /var/run/docker.sock:/var/run/docker.sock -v $WORKSPACE:$WORKSPACE -w $WORKSPACE'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
   stages {
-    // stage('Setup Docker') {
-    //   steps {
-    //     sh '''
-    //       apt-get update
-    //       apt-get install -y docker.io
-    //       docker --version
-    //     '''
-    //   }
-    // }
     stage('Checkout') {
       steps {
         sh 'echo passed'
