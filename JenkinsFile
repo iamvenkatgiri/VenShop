@@ -69,6 +69,11 @@ pipeline {
                     cd ${WORKSPACE}
                     whoami
                     ls -ltr
+                    pwd
+                    ls -la
+                    [ -d .git ] && echo ".git exists" || echo ".git missing"
+                    git rev-parse --git-dir 2>&1 || echo "not a git repo"
+                    git status 2>&1 || echo "git status failed"
                     git config user.email "venkatagiri.sasanapuri@gmail.com"
                     git config user.name "iamvenkatgiri"
                     BUILD_NUMBER=${BUILD_NUMBER}
