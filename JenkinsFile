@@ -76,6 +76,7 @@ pipeline {
                     [ -d .git ] && echo ".git exists" || echo ".git missing"
                     git rev-parse --git-dir 2>&1 || echo "not a git repo"
                     git status 2>&1 || echo "git status failed"
+                    git config --global --add safe.directory $(pwd)
                     git config --global user.email "venkatagiri.sasanapuri@gmail.com"
                     git config --global user.name "iamvenkatgiri"
                     BUILD_NUMBER=${BUILD_NUMBER}
