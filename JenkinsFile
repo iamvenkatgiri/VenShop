@@ -71,11 +71,13 @@ pipeline {
                     ls -ltr
                     pwd
                     ls -la
+                    mount | grep workspace || true
+                    ls -lad "${WORKSPACE}" "${WORKSPACE}/." 2>/dev/null || true
                     [ -d .git ] && echo ".git exists" || echo ".git missing"
                     git rev-parse --git-dir 2>&1 || echo "not a git repo"
                     git status 2>&1 || echo "git status failed"
-                    git config user.email "venkatagiri.sasanapuri@gmail.com"
-                    git config user.name "iamvenkatgiri"
+                    git config --global user.email "venkatagiri.sasanapuri@gmail.com"
+                    git config --global user.name "iamvenkatgiri"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" k8s-manifests/deployment.yml
                     git add k8s-manifests/deployment.yml
