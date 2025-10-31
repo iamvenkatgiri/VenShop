@@ -36,3 +36,5 @@ Thumbs.db
 # Node (if any front-end assets get added)
 node_modules/
 
+#Scripts
+scripts/
