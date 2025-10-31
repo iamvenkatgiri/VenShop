@@ -67,7 +67,9 @@ pipeline {
                     git config --global user.email "venkatagiri.sasanapuri@gmail.com"
                     git config --global user.name "iamvenkatgiri"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" k8s-manifests/deployment.yml
+                    export IMAGE_TAG=${BUILD_NUMBER}
+                    envsubst < k8s-manifests/deployment.yml.tpl > k8s-manifests/deployment.yml
+                    git checkout -b "update-image-${BUILD_NUMBER}"
                     git add k8s-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master

@@ -38,3 +38,4 @@ node_modules/
 
 #Scripts
 scripts/
+k8s-manifests/deployment.yml
