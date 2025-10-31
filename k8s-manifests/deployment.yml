@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: venshop-app
-        image: iamvenkatgiri/online-shop:replaceImageTag
+        image: iamvenkatgiri/online-shop:21
         ports:
         - containerPort: 8080
