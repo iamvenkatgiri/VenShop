@@ -69,10 +69,17 @@ pipeline {
                     BUILD_NUMBER=${BUILD_NUMBER}
                     export IMAGE_TAG=${BUILD_NUMBER}
                     envsubst < k8s-manifests/deployment.yml.tpl > k8s-manifests/deployment.yml
-                    git checkout -b "update-image-${BUILD_NUMBER}"
+                    BRANCH_NAME="update-image-${BUILD_NUMBER}"
+                    git checkout -b "${BRANCH_NAME}"
                     git add k8s-manifests/deployment.yml
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                    if git diff --cached --quiet; then
+                      echo "No changes to commit"
+                    else
+                      git commit -m "ci: update deployment image to ${BUILD_NUMBER} [skip ci]"
+                      # push the new branch to remote (do not push to master/main)
+                      git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:refs/heads/${BRANCH_NAME}
+                      echo "Pushed updated manifest to branch ${BRANCH_NAME}"
+                    fi
                 '''
             }
         }
