@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: venshop-deployment
+  namespace: venshop
   labels:
     app: venshop-app
 spec:
