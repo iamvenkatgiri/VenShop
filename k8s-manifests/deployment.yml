@@ -5,7 +5,6 @@ metadata:
   namespace: venshop
   labels:
     app: venshop-app
-
 spec:
   replicas: 2
   selector:
@@ -18,6 +17,6 @@ spec:
     spec:
       containers:
       - name: venshop-app
-        image: iamvenkatgiri/online-shop:29
+        image: iamvenkatgiri/online-shop:33
         ports:
         - containerPort: 8080
