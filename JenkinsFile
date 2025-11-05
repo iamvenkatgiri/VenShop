@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'iamvenkatgiri/java_cicd_image:slim_v2'
-      args "--user root -v /var/jenkins_home/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock"
+      args '--user root -v /var/jenkins_home/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
       reuseNode true
     }
   }
@@ -13,11 +13,12 @@ pipeline {
     stage('Checkout') {
       steps {
         when {
-        not {
-          changeset "**/README.md,**/.gitignore,**/.dockerignore,**/docs/**"
-        }
-        sh 'echo passed'
+          not {
+            changeset '**/README.md,**/.gitignore,**/.dockerignore,**/docs/**'
+          }
+          sh 'echo passed'
         // git branch: 'master', url: 'https://github.com/iamvenkatgiri/VenShop.git'
+        }
       }
     }
     stage('Build and Test') {
