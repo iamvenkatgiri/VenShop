@@ -1,8 +1,12 @@
 pipeline {
+  environment {
+    JENKINS_UID = sh(script: "id -u jenkins", returnStdout: true).trim()
+    JENKINS_GID = sh(script: "id -g jenkins", returnStdout: true).trim()
+  }
   agent {
     docker {
       image 'iamvenkatgiri/java_cicd_image:slim_v2'
-      args '-u 1000:1000 -v $HOME/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
+      args '-u ${JENKINS_UID}:${JENKINS_GID} -v $HOME/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
       reuseNode true
     }
   }
