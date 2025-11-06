@@ -50,6 +50,7 @@ pipeline {
       }
       steps {
         script {
+            sh 'pwd'
             sh 'docker build -t ${DOCKER_IMAGE} .'
             // Tag the image as latest in addition to build number
             sh 'docker tag ${DOCKER_IMAGE} iamvenkatgiri/online-shop:latest'
