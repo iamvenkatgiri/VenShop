@@ -1,0 +1,23 @@
+FROM maven:4.0.0-rc-4-eclipse-temurin-25-alpine
+
+USER root
+
+RUN apk add --no-cache \
+      bash \
+      curl \
+      gettext \
+      git \
+      shadow \
+      docker-cli \
+      docker-cli-buildx \
+      docker-cli-compose && \
+    addgroup -g 1001 docker && \
+    addgroup -g 111 jenkins && \
+    adduser -u 105 -G jenkins -G docker -D jenkins && \
+    mkdir -p /home/jenkins/.m2 && \
+    chown -R jenkins:jenkins /home/jenkins && \
+    chmod -R 775 /home/jenkins
+
+ENV MAVEN_CONFIG=/home/jenkins/.m2
+USER jenkins
+WORKDIR /home/jenkins
